@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace HW_7_8
+namespace HW_7_8.Data
 {
-    public class ExpensesDbContext:DbContext
+    public class ExpensesDbContext : DbContext
     {
         public DbSet<Expenses> Expenseses { get; set; }
 
