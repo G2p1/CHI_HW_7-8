@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Abp.Web.Mvc.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace HW_7_8.Controllers
 {
@@ -6,21 +8,33 @@ namespace HW_7_8.Controllers
     [Route("[controller]")]
     public class HomeController : Controller
     {
-
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
-        
 
-        [HttpGet(Name ="Home")]
-        public IActionResult Home()
+        public IActionResult Index()
         {
             return View();
         }
 
-      
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddExpense(Expense expense)
+        {
+            return RedirectToAction("Index");
+        }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
     }
 }
